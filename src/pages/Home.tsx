@@ -1,16 +1,12 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+// import axios from "axios";
 import { ShopCard } from "../components/shoppingCard/ShopCard";
-
+import axios from "../services/apiService";
 export const Home = () => {
   const [userData, setUserData] = useState([]);
   const populateHome = async () => {
     try {
-      const response = await axios.get("http://localhost:3001/product/all", {
-        headers: {
-          "access-token": localStorage.getItem("token"),
-        },
-      });
+      const response = await axios.get("/product/all");
       setUserData(response.data);
     } catch (error) {
       console.log(error);
