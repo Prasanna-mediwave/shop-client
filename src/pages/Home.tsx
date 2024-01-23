@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { ShopCard } from "../components/shoppingCard/ShopCard";
 
 export const Home = () => {
-  const navigate = useNavigate();
+  const [userData, setUserData] = useState([]);
   const populateHome = async () => {
     try {
       const response = await axios.get("http://localhost:3001/product/all", {
@@ -11,7 +11,7 @@ export const Home = () => {
           "access-token": localStorage.getItem("token"),
         },
       });
-      console.log(response);
+      setUserData(response.data);
     } catch (error) {
       console.log(error);
     }
@@ -23,16 +23,11 @@ export const Home = () => {
     }
   }, []);
 
-  const logoutHandler = () => {
-    localStorage.removeItem("token");
-    navigate("/login");
-  };
-
   return (
-    <div>
-      <button type="button" onClick={logoutHandler}>
-        logout
-      </button>
-    </div>
+    <>
+      <div className="bg-primary w-full px-40 py-10">
+        <ShopCard userData={userData} />
+      </div>
+    </>
   );
 };
