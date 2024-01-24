@@ -16,7 +16,7 @@ export const NavBar = () => {
         {token ? (
           <>
             <Link to="/">Home</Link>
-            <Link to='"/cart"'>View cart</Link>
+            <Link to="/cart">View cart</Link>
             <button type="button" onClick={logoutHandler}>
               Logout
             </button>

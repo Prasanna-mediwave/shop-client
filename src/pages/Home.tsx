@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-// import axios from "axios";
 import { ShopCard } from "../components/shoppingCard/ShopCard";
 import axios from "../services/apiService";
 export const Home = () => {
